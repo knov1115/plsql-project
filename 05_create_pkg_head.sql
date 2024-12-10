@@ -1,6 +1,6 @@
 CREATE OR REPLACE PACKAGE pkg_jarmu AS
 
-  /* KIV…TELEK DEKLAR¡L¡SA */
+  /* KIV√âTELEK DEKLAR√ÅL√ÅSA */
   jarmu_nem_forgalmazott_exc EXCEPTION;
   PRAGMA EXCEPTION_INIT(jarmu_nem_forgalmazott_exc, -20100);
 
@@ -10,7 +10,7 @@ CREATE OR REPLACE PACKAGE pkg_jarmu AS
   hibas_adat_exc EXCEPTION;
   PRAGMA EXCEPTION_INIT(hibas_adat_exc, -20102);
 
-  /* F‹GGV…NYEK …S PROCED⁄R¡K DEKLAR¡L¡SA */
+  /* F√úGGV√âNYEK √âS PROCED√öR√ÅK DEKLAR√ÅL√ÅSA */
   FUNCTION get_darabszam(jarmu_id IN NUMBER, kereskedes_id IN NUMBER) RETURN NUMBER;
 
   PROCEDURE legolcsobb_kereskedes(
@@ -28,3 +28,8 @@ CREATE OR REPLACE PACKAGE pkg_jarmu AS
 
 END pkg_jarmu;
 /
+
+--ELLEN≈êRZ√âS
+SELECT object_name, object_type, status
+FROM user_objects
+WHERE object_name = 'PKG_JARMU' AND object_type = 'PACKAGE';
