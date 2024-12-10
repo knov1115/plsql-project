@@ -47,24 +47,24 @@ CREATE OR REPLACE PACKAGE BODY pkg_jarmu AS
   PROCEDURE keszlet_feltoltes(kereskedes_id IN NUMBER, jarmu_id IN NUMBER, uj_keszlet IN NUMBER) IS
     letezik NUMBER;
   BEGIN
-    -- Ellenırizz¸k, hogy a megadott kÈszlet pozitÌv-e
+    -- Ellen√µrizz√ºk, hogy a megadott k√©szlet pozit√≠v-e
     IF uj_keszlet <= 0 THEN
       RAISE hibas_adat_exc;
     END IF;
 
-    -- Ellenırizz¸k, hogy a j·rm˚-kereskedÈs p·ros lÈtezik-e
+    -- Ellen√µrizz√ºk, hogy a j√°rm√ª-keresked√©s p√°ros l√©tezik-e
     SELECT COUNT(*)
     INTO letezik
     FROM kereskedes_jarmu
     WHERE kereskedes_id = kereskedes_id AND jarmu_id = jarmu_id;
 
     IF letezik > 0 THEN
-      -- Ha lÈtezik, nˆvelj¸k a kÈszletet
+      -- Ha l√©tezik, n√∂velj√ºk a k√©szletet
       UPDATE kereskedes_jarmu
       SET darabszam = darabszam + uj_keszlet
       WHERE kereskedes_id = kereskedes_id AND jarmu_id = jarmu_id;
     ELSE
-      -- Ha nem lÈtezik, ˙j rekordot hozunk lÈtre
+      -- Ha nem l√©tezik, √∫j rekordot hozunk l√©tre
       INSERT INTO kereskedes_jarmu (id, kereskedes_id, jarmu_id, darabszam, ar)
       VALUES (kereskedes_jarmu_seq.NEXTVAL, kereskedes_id, jarmu_id, uj_keszlet, 0);
     END IF;
@@ -72,3 +72,8 @@ CREATE OR REPLACE PACKAGE BODY pkg_jarmu AS
 
 END pkg_jarmu;
 /
+
+--ELLEN≈êRZ√âS
+SELECT object_name, object_type, status
+FROM user_objects
+WHERE object_name = 'PKG_JARMU' AND object_type = 'PACKAGE BODY';
