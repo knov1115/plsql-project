@@ -7,3 +7,8 @@ CREATE OR REPLACE TYPE ty_kereskedes_statisztika AS OBJECT
   darabszam_ertek                NUMBER      
 )
 ;
+
+--ELLENŐRZÉS
+SELECT type_name, type_oid
+FROM user_types
+WHERE type_name = 'TY_KERESKEDES_STATISZTIKA';
